@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+    <!--    这个是spring容器的主配置-->
+    <!--    annotation-config 我们一般在含有Spring的项目中，可能会看到配置项中包含这个配置节点context:annotation-config，这是一条向Spring容器中注册:
+        AutowiredAnnotationBeanPostProcessor、
+        CommonAnnotationBeanPostProcessor、
+        PersistenceAnnotationBeanPostProcessor、
+        RequiredAnnotationBeanPostProcessor。
+        这4个BeanPostProcessor.注册这4个BeanPostProcessor的作用，就是为了你的系统能够识别相应的注解。
+        如果想使用@ Resource 、@ PostConstruct、@ PreDestroy等注解就必须声明CommonAnnotationBeanPostProcessor。
+        如果想使用@PersistenceContext注解，就必须声明PersistenceAnnotationBeanPostProcessor的Bean。
+        如果想使用@Autowired注解，那么就必须事先在 Spring 容器中声明 AutowiredAnnotationBeanPostProcessor Bean。
+        如果想使用 @Required的注解，就必须声明RequiredAnnotationBeanPostProcessor的Bean。-->
+    <context:component-scan base-package="com.mmall" annotation-config="true"/>
+
+    <!--    启用Aspectj自动代理-->
+    <aop:aspectj-autoproxy/>
+
+    <!--导入资源文件-->
+    <import resource="applicationContext-datasource.xml"/>
+
+
+</beans>
