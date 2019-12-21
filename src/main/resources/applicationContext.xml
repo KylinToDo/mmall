@@ -21,7 +21,9 @@
         如果想使用@PersistenceContext注解，就必须声明PersistenceAnnotationBeanPostProcessor的Bean。
         如果想使用@Autowired注解，那么就必须事先在 Spring 容器中声明 AutowiredAnnotationBeanPostProcessor Bean。
         如果想使用 @Required的注解，就必须声明RequiredAnnotationBeanPostProcessor的Bean。-->
-    <context:component-scan base-package="com.mmall" annotation-config="true"/>
+    <context:component-scan base-package="com.mmall" annotation-config="true">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
 
     <!--    启用Aspectj自动代理-->
     <aop:aspectj-autoproxy/>

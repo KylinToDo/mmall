@@ -7,9 +7,11 @@
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 	http://www.springframework.org/schema/mvc
 	http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-
-    <context:component-scan base-package="com.mmall" annotation-config="true"/>
-
+    <!--    开启@Controller注解的扫描-->
+    <context:component-scan base-package="com.mmall" annotation-config="true">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    <!--todo <mvc:annotation-driven>的作用-->
     <mvc:annotation-driven>
         <mvc:message-converters>
             <bean class="org.springframework.http.converter.StringHttpMessageConverter">
@@ -20,7 +22,7 @@
                     </list>
                 </property>
             </bean>
-<!--            todo 反序列化用的类-->
+            <!--todo 反序列化用的类-->
             <bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
                 <property name="supportedMediaTypes">
                     <list>
@@ -32,13 +34,10 @@
     </mvc:annotation-driven>
 
 
-
-    <!-- todo 文件上传 -->
+    <!-- todo 文件上传,为什么springMVC的配置文件里面会定义bean? -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="maxUploadSize" value="10485760"/> <!-- 10m -->
-        <property name="maxInMemorySize" value="4096" />
+        <property name="maxInMemorySize" value="4096"/>
         <property name="defaultEncoding" value="UTF-8"></property>
     </bean>
-
-
 </beans>

@@ -36,7 +36,7 @@
         and password=#{password}
     </select>
     <select id="checkEmail" resultType="java.lang.Integer">
-    select count (1)
+    select count(1)
     from  mmall_user
     where email=#{email}
   </select>
@@ -76,8 +76,8 @@
       update_time)
     values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{question,jdbcType=VARCHAR}, 
-      #{answer,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP})
+      #{answer,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER}, now(),
+      now())
   </insert>
     <insert id="insertSelective" parameterType="com.mmall.pojo.User">
         insert into mmall_user
@@ -171,10 +171,10 @@
                 role = #{role,jdbcType=INTEGER},
             </if>
             <if test="createTime != null">
-                create_time = #{createTime,jdbcType=TIMESTAMP},
+                create_time = now(),
             </if>
             <if test="updateTime != null">
-                update_time = #{updateTime,jdbcType=TIMESTAMP},
+                update_time = now(),
             </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
@@ -188,8 +188,8 @@
       question = #{question,jdbcType=VARCHAR},
       answer = #{answer,jdbcType=VARCHAR},
       role = #{role,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
+      create_time = now(),
+      update_time = now()
     where id = #{id,jdbcType=INTEGER}
   </update>
     <update id="updatePasswordByUsername" parameterType="map">

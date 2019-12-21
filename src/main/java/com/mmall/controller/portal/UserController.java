@@ -58,7 +58,7 @@ public class UserController {
         return iUserService.register(user);
     }
 
-    @RequestMapping(value = "checkValid.do", method = RequestMethod.POST)
+    @RequestMapping(value = "check_valid.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<String> checkValid(String str, String type) {
         return iUserService.checkValid(str, type);
